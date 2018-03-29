@@ -45,8 +45,16 @@ int main(int argc, char* argv[])
 	std::replace(dest.begin(), dest.end(), ':', '_');
 	std::replace(dest.begin(), dest.end(), '\n', '_');
 	dest.c_str();
+	
+	int width = (int)capture.get(cv::CAP_PROP_FRAME_WIDTH);
+	int height = (int)capture.get(cv::CAP_PROP_FRAME_HEIGHT);
+	int fps = (int)capture.get(cv::CAP_PROP_FPS);
 
-	VideoWriter writer(dest, CV_FOURCC('H','2','6','4'), 50, Size(1280, 720));
+	VideoWriter writer(dest, 
+						CV_FOURCC('H','2','6','4'), 
+						fps, 
+						Size(width, height)
+						);
 
 	cv::Point origin;
 	origin.x = 100;
@@ -55,16 +63,12 @@ int main(int argc, char* argv[])
 	for (int i = 0; i < 1000; ++i)
 	{
 		capture >> frame;
-		
-		long stamp = capture.get(cv::CAP_PROP_POS_MSEC);
-
 		//std::string s = std::to_string(i);
 		//char const *pchar = s.c_str();
 
 		time_t rawtime;
 		time(&rawtime);
 		char const *time = ctime(&rawtime);
-
 		cv::putText(frame, time, origin, cv::FONT_HERSHEY_COMPLEX, 2, cv::Scalar(0, 255, 255), 2, 8, 0);
 		writer << frame;
 
