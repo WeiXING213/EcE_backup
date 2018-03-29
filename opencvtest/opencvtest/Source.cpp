@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
 	VideoWriter writer(dest, 
 						CV_FOURCC('H','2','6','4'), 
-						fps, 
+						50, 
 						Size(width, height)
 						);
 
