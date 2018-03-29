@@ -1,2 +1,0 @@
-﻿  Source.cpp
-c:\users\dev\source\repos\opencvtest\opencvtest\source.cpp(1): fatal error C1083: Impossible d'ouvrir le fichier include : 'opencv2/highgui/highgui.hpp' : No such file or directory
